@@ -352,5 +352,7 @@ class OpenAIChatCompletion(LocalChatCompletion):
 
         if self.base_url and "generativelanguage.googleapis.com" in self.base_url:
             output.pop("seed")
+            if "gemini-2.5" in self.model:
+                output.pop("max_completion_tokens")
 
         return output
