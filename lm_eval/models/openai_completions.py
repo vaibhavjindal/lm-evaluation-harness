@@ -345,4 +345,9 @@ class OpenAIChatCompletion(LocalChatCompletion):
         ):
             output.pop("stop")
             output["temperature"] = 1
+        
+        # Remove max_completion_tokens for gpt-5 as it includes thinking tokens for reasoning
+        if "gpt-5" in self.model:
+            output.pop("max_completion_tokens")
+
         return output
